@@ -6,7 +6,7 @@ metadata:
 spec:
   description: product-service 전용 프로젝트 (Section 5 실습)
   sourceRepos:
-    - https://github.com/<내계정>/product-service-manifests.git
+    - https://github.com/joneconsulting/product-service-manifests.git
   destinations:
     - namespace: 'product-service-*'
       server: https://kubernetes.default.svc
@@ -16,7 +16,7 @@ spec:
       kind: '*'
   roles:
     - name: dev-team
-      description: dev/staging 조회 및 Sync 권한
+      description: dev/staging 조회 및 Sync 권한 (production 조회 권한만)
       policies:
         - p, proj:product-service:dev-team, applications, get, product-service/*, allow
         - p, proj:product-service:dev-team, applications, sync, product-service/product-service-dev, allow
@@ -24,7 +24,7 @@ spec:
       groups:
         - dev-team
     - name: prod-approver
-      description: production Sync 승인 권한
+      description: production Sync 승인 권한 (dev/staging 조회 권한만)
       policies:
         - p, proj:product-service:prod-approver, applications, get, product-service/*, allow
         - p, proj:product-service:prod-approver, applications, sync, product-service/product-service-prod, allow
