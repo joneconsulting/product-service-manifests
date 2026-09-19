@@ -17,15 +17,16 @@ namespace: product-service-prod
 # configurations:
 #   - kustomizeconfig.yaml
 resources:
-  - ../../base
+- ../../base
 patches:
-  - target:
-      kind: Deployment
-      name: product-service
-    patch: |-
-      - op: replace
-        path: /spec/replicas
-        value: 3
+- patch: |-
+    - op: replace
+      path: /spec/replicas
+      value: 3
+  target:
+    kind: Deployment
+    name: product-service
 images:
-  - name: product-service
-    newTag: local
+- name: product-service
+  newName: product-service
+  newTag: "5"
