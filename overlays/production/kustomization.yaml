@@ -25,7 +25,7 @@ patches:
     patch: |-
       - op: replace
         path: /spec/replicas
-        value: 5
+        value: 3
 images:
   - name: product-service
     newTag: local
