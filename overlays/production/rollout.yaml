@@ -36,10 +36,15 @@ spec:
             initialDelaySeconds: 20
             periodSeconds: 10
   strategy:
-    canary:
-      steps:
-        - setWeight: 20
-        - pause: { duration: 1m }
-        - setWeight: 40
-        - pause: { duration: 1m }
-        - setWeight: 100
+    # canary:
+    #   steps:
+    #     - setWeight: 20
+    #     - pause: { duration: 1m }
+    #     - setWeight: 40
+    #     - pause: { duration: 1m }
+    #     - setWeight: 100
+    blueGreen:
+      activeService: product-service-active
+      previewService: product-service-preview
+      autoPromotionEnabled: false
+      scaleDownDelaySeconds: 30

@@ -8,6 +8,8 @@ namespace: product-service-prod
 resources:
   - rollout.yaml
   - ../../base
+  - product-service-active.yaml
+  - product-service-preview.yaml
 
 patches:
   - patch: |-
@@ -16,7 +18,13 @@ patches:
       metadata:
         name: product-service
       $patch: delete
-      
+  - patch: |-
+      apiVersion: apps/v1
+      kind: Service
+      metadata:
+        name: product-service
+      $patch: delete
+
 images:
   - name: product-service
     newTag: v1
