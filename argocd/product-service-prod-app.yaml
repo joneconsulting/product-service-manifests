@@ -6,6 +6,12 @@ kind: Application
 metadata:
   name: product-service-prod
   namespace: argocd
+
+  annotations:
+    notificatiosn.argoproj.io/subscribe.on-sync-succeeded.slack: deploy
+    notificatiosn.argoproj.io/subscribe.on-sync-failed.slack: deploy
+    notificatiosn.argoproj.io/subscribe.on-health-degraded.slack: deploy
+
 spec:
   project: product-service
   source:
