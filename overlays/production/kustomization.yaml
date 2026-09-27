@@ -6,18 +6,18 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: product-service-prod
 resources:
-  - rollout.yaml
-  - ../../base
+- rollout.yaml
+- ../../base
   # - product-service-active.yaml
   # - product-service-preview.yaml
 
 patches:
-  - patch: |-
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: product-service
-      $patch: delete
+- patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: product-service
+    $patch: delete
   # - patch: |-
   #     apiVersion: v1
   #     kind: Service
@@ -26,24 +26,6 @@ patches:
   #     $patch: delete
 
 images:
-  - name: product-service
-    newTag: v1
-# # Kustomize의 이미지 치환 기능은 기본적으로 Deployment/StatefulSet 등
-# # 잘 알려진 리소스 종류만 인식합니다. Argo Rollouts의 Rollout 커스텀 리소스도
-# # 인식하도록 아래 configurations로 필드 경로를 추가로 알려줘야 합니다.
-# configurations:
-#   - kustomizeconfig.yaml
-# resources:
-# - ../../base
-# patches:
-# - patch: |-
-#     - op: replace
-#       path: /spec/replicas
-#       value: 3
-#   target:
-#     kind: Deployment
-#     name: product-service
-# images:
-# - name: product-service
-#   newName: product-service
-#   newTag: "14"
+- name: product-service
+  newName: product-service
+  newTag: "16"
