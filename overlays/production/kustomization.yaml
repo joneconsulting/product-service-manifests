@@ -28,4 +28,4 @@ patches:
 images:
 - name: product-service
   newName: product-service
-  newTag: "16"
+  newTag: "18"
